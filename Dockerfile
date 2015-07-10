@@ -5,7 +5,8 @@ USER root
 RUN apt-get update &&  apt-get install -y npm \
     	    	       	       	       	  emacs \
 					  nodejs-legacy \
-					  ruby-sass
+					  ruby-sass \
+					  maven
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
 RUN npm install -g phantomjs
