@@ -1,15 +1,10 @@
 # docker
 
-<<<<<<< HEAD
- docker run --name chai-logstash -it --rm -v "$PWD":/configuration  chai-logstash logstash -f /configuration/logstash.conf 
-=======
-## to build the project :-
+#to build
 
-docker build -t chai-backend ./
+docker build -t chai-logstash ./
 
-## To run the project
+# to run 
 
-docker run   -it -p 8081:8080  --link chai-postgres:pg --link ecstatic_hawking:logstash chai-backend
+docker run    -d  -p 9292:9292   -p 9200:9200   chai-logstash
 
-
->>>>>>> 3743fbcf43f25e2958c493608b66c3478914d2a7
