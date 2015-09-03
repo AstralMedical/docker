@@ -1,10 +1,5 @@
 # docker
 
-#to build
+docker build chai-logstash -t
 
-docker build -t chai-logstash ./
-
-# to run 
-
-docker run    -d  -p 9292:9292   -p 9200:9200   chai-logstash
-
+ docker run --name chai-logstash -it --rm -v "$PWD":/configuration  chai-logstash logstash -f /configuration/logstash.conf 
