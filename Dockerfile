@@ -13,11 +13,11 @@ USER astral
 WORKDIR /home/astral
 
 # Repo clone
-RUN git clone "https://<access_token>@github.com/AstralMedical/printing"
-WORKDIR /home/astral/printing
-RUN pip install --user -r requirements.txt
+#RUN git clone "https://<access_token>@github.com/AstralMedical/printing"
+WORKDIR /home/astral/
+
 ENV PATH=/home/astral/.local/bin:$PATH
 EXPOSE 8000
 
 # Starting the server
-CMD /home/astral/.local/bin/supervisord
+CMD pip install --user -r requirements.txt&&/home/astral/.local/bin/supervisord
