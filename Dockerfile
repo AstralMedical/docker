@@ -39,9 +39,11 @@ RUN mkdir -p /usr/share/jenkins/android-sdk-linux && chown -R jenkins:jenkins /u
 
 
 USER jenkins
+
 RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /usr/share/jenkins/android-sdk-linux/tools/android update sdk --no-ui -a --filter platform-tool,build-tools-22.0.1,android-22
 
  # drop back to the regular jenkins user - good practice
+ENV JENKINS_OPTS --prefix=/jenkins
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 #COPY config.xml
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
