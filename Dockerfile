@@ -4,6 +4,7 @@ USER root
 #we need node, grunt and bower
 RUN apt-get update &&  apt-get install -y npm \
     	    	       	       	       	  emacs \
+					  socat \
 					  nodejs-legacy \
 					  ruby-sass \
 					  maven \
