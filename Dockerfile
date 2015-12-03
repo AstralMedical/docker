@@ -19,7 +19,7 @@ RUN npm install -g bower
 RUN npm install -g cordova
 RUN pip install virtualenv
 RUN gem install scss-lint -v 0.38.0
-
+RUN echo "Europe/London" > /etc/timezone
 
 RUN apt-get install -y lib32stdc++6 lib32z1
 
