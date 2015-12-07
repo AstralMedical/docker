@@ -23,12 +23,15 @@ RUN echo "Europe/London" > /etc/timezone
 
 RUN apt-get install -y lib32stdc++6 lib32z1
 
+# download and extract gradle
+RUN wget https://services.gradle.org/distributions/gradle-2.9-bin.zip -O /usr/share/jenkins/gradle-2.9-bin.zip
+RUN unzip /usr/share/jenkins/gradle-2.9-bin.zip -d /usr/share/jenkins/
+ENV GRADLE_HOME /usr/share/jenkins/gradle-2.9
+
 # download and extract android sdk
 RUN curl http://dl.google.com/android/android-sdk_r24.2-linux.tgz | tar xz -C /usr/share/jenkins/
 ENV ANDROID_HOME /usr/share/jenkins/android-sdk-linux/
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-
-
 
 # update and accept licences
 
