@@ -2,7 +2,7 @@
 
 FROM ubuntu
 
-COPY /etc/apt/apt.conf /etc/apt/apt.conf
+COPY apt.conf /etc/apt/apt.conf
 
 
 # Dependencies
