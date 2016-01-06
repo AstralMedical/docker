@@ -1,0 +1,11 @@
+service ssh-switch
+{
+ disable = no
+ type = UNLISTED
+ socket_type = stream
+ protocol = tcp
+ wait = no
+ redirect = 10.58.33.130 22
+ port = 2022
+ user = nobody
+}
