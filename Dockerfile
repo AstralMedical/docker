@@ -7,7 +7,7 @@ COPY apt.conf /etc/apt/apt.conf
 
 # Dependencies
 RUN apt-get update
-RUN apt-get -y install python-pip python-dev libncurses5-dev libjpeg-dev zlib1g-dev libfreetype6-dev libpng12-dev git vim
+RUN apt-get -y install python-pip python-dev libncurses5-dev libjpeg-dev zlib1g-dev libfreetype6-dev libpng12-dev
 
 # New user
 RUN useradd -ms /bin/bash astral
