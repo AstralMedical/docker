@@ -1,11 +1,11 @@
 # docker
-docker images
 
-#Printing
+## to build the project :-
 
-    docker build -t printing . // Create docker image
-    docker run -d -p 3000:8000 printing // Start printing server, listening on port 3000 of host machine.
-    docker exec <container_id> supervisorctl stop printing // Stop prining server
-    docker exec <container_id> supervisorctl start printing //Start printing server
+docker build -t chai-backend ./
+
+## To run the project
+
+docker run   -it -p 8081:8080 -v /path/to/folder:/data  --link chai-postgres:pg --link ecstatic_hawking:logstash chai-backend
 
 

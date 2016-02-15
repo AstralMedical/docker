@@ -1,26 +1,5 @@
-# Printing Application Dockerfile
+FROM java:7
 
-FROM ubuntu
+CMD java -jar /data/chai-1.0-SNAPSHOT.jar server /data/config.yml -db $PG_PORT_5432_TCP_ADDR:$PG_PORT_5432_TCP_PORT -es $LOGSTASH_PORT_12201_UDP_ADDR:$LOGSTASH_PORT_12201_UDP_PORT -cards /data/cards
 
-COPY apt.conf /etc/apt/apt.conf
-
-
-# Dependencies
-RUN apt-get update
-RUN apt-get -y install python-pip python-dev libncurses5-dev libjpeg-dev zlib1g-dev libfreetype6-dev libpng12-dev
-
-# New user
-RUN useradd -ms /bin/bash astral
-RUN chown -R astral:astral /home/astral
-USER astral
-WORKDIR /home/astral
-
-# Repo clone
-#RUN git clone "https://<access_token>@github.com/AstralMedical/printing"
-WORKDIR /home/astral/
-
-ENV PATH=/home/astral/.local/bin:$PATH
-EXPOSE 8000
-
-# Starting the server
-CMD pip install --user -r requirements.txt&&/home/astral/.local/bin/supervisord
+EXPOSE 8080

@@ -1,0 +1,13 @@
+backend:
+  build: .
+  ports:
+   - "8080:8080"
+  volumes:
+   - .:/code
+  links:
+   - postgres
+   - logstash
+postgres-dev:
+  image: postgres:latest
+chai-logstash:
+  image: chailogstash
