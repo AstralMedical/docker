@@ -2,10 +2,17 @@
 
 ## to build the project :-
 
-docker build -t chai-backend ./
+build.sh expects to find projects in ~/git/$project
+all projects must be built before running build.sh
+you will need to edit the confic.json for the client
+
 
 ## To run the project
 
-docker run   -it -p 8081:8080 -v /path/to/folder:/data  --link chai-postgres:pg --link ecstatic_hawking:logstash chai-backend
+docker-compose -f backend.yml up
+
+
+
+
 
 
