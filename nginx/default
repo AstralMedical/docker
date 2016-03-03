@@ -18,14 +18,22 @@
 ##
 
 server {
-	listen 46.101.17.39:80;
-#	listen [::]:80 default_server ipv6only=on;
+        listen *:8000;
+	#listen [::]:8000 default_server ipv6only=on;
+        location / {
+                                proxy_set_header X-Forwarded-Host $host;
+      				 proxy_set_header X-Forwarded-Server $host;
+      				 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+				 proxy_pass http://print:8000/;
+}
+}
+server {
+#	listen 46.101.17.39:80;
+        listen *:80;
+	#listen [::]:80 default_server ipv6only=on;
 
-	root /home/deploy/chai;
-	index index.html index.htm;
-
-	# Make site accessible from http://localhost/
-	server_name chai.elidirhealth.co.uk;
+	root /usr/share/nginx/html/;
+	
 	location / {
 		 # First attempt to serve request as file, then
 		   # as directory, then fall back to displaying a 404.
@@ -36,31 +44,28 @@ server {
 
 				 # Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests
 				 #location /RequestDenied {
-				 #	   proxy_pass http://127.0.0.1:8080;    
+				 #	   proxy_pass http://backend:8080;    
 				 #}
-				 location /config
-				 {
-				 root /home/deploy/chai-config/;
-				 }
+				 
 				 location /patients {
 				 proxy_set_header X-Forwarded-Host $host;
       				 proxy_set_header X-Forwarded-Server $host;
       				 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-				 proxy_pass http://127.0.0.1:8080/patients;    
+				 proxy_pass http://backend:8080/patients;    
 				 }
 
 				 location /messages {
 				 proxy_set_header X-Forwarded-Host $host;
       				 proxy_set_header X-Forwarded-Server $host;
       				 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-				 proxy_pass http://127.0.0.1:8080/message;    
+				 proxy_pass http://backend:8080/message;    
 				 }
 				 
 				 location /auth {
 				 proxy_set_header X-Forwarded-Host $host;
       				 proxy_set_header X-Forwarded-Server $host;
       				 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-				 proxy_pass http://127.0.0.1:8080/auth;    
+				 proxy_pass http://backend:8080/auth;    
 				 }
 
 				 
@@ -69,13 +74,13 @@ server {
 				 proxy_set_header X-Forwarded-Host $host; 
 				 proxy_set_header X-Forwarded-Server $host;
       				 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-				 proxy_pass http://127.0.0.1:8080/patient;    
+				 proxy_pass http://backend:8080/patient;    
 				 }
        location /socket {
        proxy_set_header X-Forwarded-Host $host;
        proxy_set_header X-Forwarded-Server $host;
        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-       proxy_pass http://127.0.0.1:8080/socket;
+       proxy_pass http://backend:8080/socket;
        proxy_http_version 1.1;
            proxy_set_header Upgrade $http_upgrade;
 	          proxy_set_header Connection "upgrade";
@@ -86,14 +91,14 @@ proxy_read_timeout 1h;
        proxy_set_header X-Forwarded-Host $host;
        proxy_set_header X-Forwarded-Server $host;
        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-       proxy_pass http://127.0.0.1:8080/card;
+       proxy_pass http://backend:8080/card;
        }
 
        location /message {
        proxy_set_header X-Forwarded-Host $host;
        proxy_set_header X-Forwarded-Server $host;
        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-       proxy_pass http://127.0.0.1:8080/message;
+       proxy_pass http://backend:8080/message;
        }
 				 #error_page 404
 	# Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests
