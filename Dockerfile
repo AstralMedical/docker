@@ -10,11 +10,11 @@ RUN apt-get update &&  apt-get install -y npm \
 					  maven \
 					  python-dev \
 					  python-pip \
-					  libncurses5-dev
+					  libncurses5-dev \
+                      lame
 
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
-RUN npm install -g phantomjs
 RUN npm install -g bower
 RUN npm install -g cordova
 RUN pip install virtualenv
