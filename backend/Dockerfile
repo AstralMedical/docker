@@ -1,6 +1,8 @@
-
 FROM java:7
 
-CMD java -jar /data/chai-1.0-SNAPSHOT.jar server /data/config.yml -db pg:$PG_PORT_5432_TCP_PORT -es logstash:$LOGSTASH_PORT_12201_UDP_PORT -cards /data/cards
+COPY apt.conf /etc/apt/apt.conf
+RUN apt-get update &&  apt-get install -y lame
+
+CMD java -jar /data/chai-1.0-SNAPSHOT.jar server /data/config.yml -db pg:5432 -es logstash:12201 -cards /data/cards
 
 EXPOSE 8080

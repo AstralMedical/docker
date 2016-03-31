@@ -1,9 +1,20 @@
 version: "2"
 services:
+  web:
+    build: ./nginx
+    ports:
+      - "8000:8000"
+      - "8080:80"
+    depends_on:
+      - backend
+      - print
+    networks:
+      - back-tier
+
   backend:
     build: ./backend
-    ports:
-      - "8080:8080"
+      #ports:
+      #   - "8080:8080"
     volumes:
       - ./data:/data
     depends_on:
@@ -17,7 +28,7 @@ services:
   pg:
     image: postgres:latest
     environment:
-      POSTGRES_PASSWORD: ${PGPASS}
+      POSTGRES_PASSWORD: ${PG_PASS}
       POSTGRES_USER: chai
     networks:
       back-tier:
@@ -35,5 +46,14 @@ services:
       back-tier:
         aliases:
           - "logstash"
+
+  print:
+    build: ./print
+    networks:
+      back-tier:
+        aliases:
+          - "print"
+
+
 networks:
   back-tier:
