@@ -1,4 +1,4 @@
-FROM java:7
+FROM java:8
 COPY apt.conf /etc/apt/apt.conf
 RUN apt-get update &&  apt-get install -y lame
 
