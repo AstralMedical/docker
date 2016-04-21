@@ -1,9 +1,9 @@
-# Backend
+# WCP 
 
 ## to build the project :-
 
-docker build -t chai-backend .
+docker build -t chai-wcp .
 
 ## To run the project
 
-docker run   -it -p 8081:8080 -v `pwd`/data:/data  --link chai-postgres:pg --link ecstatic_hawking:logstash chai-backend
+docker run  --name chai-wcp name `pwd`/data:/data  --link chai-postgres:pg chai-wcp
