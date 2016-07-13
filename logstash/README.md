@@ -1,5 +1,7 @@
 # Docker Logstash Container
 
+conf.d must be mounted as /opt/logstash/conf.d to use config.
+
 ## Build
 
 docker build -t chai-logstash  .

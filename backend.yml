@@ -1,9 +1,7 @@
 version: "2"
 services:
   backend:
-    build: ./backend
-    ports:
-      - "8080:8080"
+    build: ./backend    
     volumes:
       - ./data:/data
     depends_on:
@@ -15,10 +13,12 @@ services:
           - "backend"
 
   pg:
-    image: postgres:latest
+    image: postgres:9.5.1
     environment:
-      POSTGRES_PASSWORD: ${PGPASS}
+      POSTGRES_PASSWORD: ThisIsChai1
       POSTGRES_USER: chai
+    volumes:
+      - ./db:/var/lib/postgresql/data
     networks:
       back-tier:
         aliases:
@@ -31,6 +31,7 @@ services:
       - "9200:9200"
     volumes:
       - ./logstash/conf.d:/opt/logstash/conf.d/
+      - ./logstash-data:/opt/logstash/data
     networks:
       back-tier:
         aliases:

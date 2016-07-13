@@ -2,9 +2,9 @@
 
 This project has 3 docker compose files:
 
-* backend.yml - backend only (e.g. for dev on front end)
-* complete.yml - for everything (includes printing and front end)
-* pims.yml - for pims
+* backend.yml   - backend only (e.g. for dev on front end)
+* complete.yml  - for everything (includes printing and front end)
+* pims.yml      - everything plus pims
 
 ## backend.yml
 
@@ -14,10 +14,10 @@ Create a folder called data, and copy in the following:
 * config.yml (As above: https://www.elidirhealth.co.uk/jenkins/view/dev/job/dev-backend-jar/ws/chai/target/classes/config.yml)
 * all cards - copy from cards git repo into a single directory called cards.
 
-To run:
+To run (and rebuild all images):
 
     `export PGPASS=[chai-password]`
-    `docker-compose -f backend.yml up`
+    `docker-compose -f backend.yml up --build`
 
 You should end up with the backend available at:
 
