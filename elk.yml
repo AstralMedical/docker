@@ -1,0 +1,40 @@
+version: "2"
+services:
+  elasticsearch:
+    image: elasticsearch:2.4  
+    command: elasticsearch -Des.network.host=0.0.0.0
+    volumes:
+      - chai-elastic:/usr/share/elasticsearch/data
+      - ./elasticsearch/conf:/usr/share/elasticsearch/conf
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      back-tier:
+        aliases:
+          - "elasticsearch"
+  logstash:
+    build: ./logstash
+    command: logstash -f /etc/logstash/conf.d/logstash.conf    
+    depends_on:
+      - elasticsearch  
+    networks:
+      back-tier:
+        aliases:
+          - "logstash"
+  kibana:
+    image: kibana:4.6
+    volumes:
+      - ./kibana/config/:/opt/kibana/config/
+    depends_on:
+      - elasticsearch 
+    ports:
+      - "9292:9292"
+    networks:
+      back-tier:
+        aliases:
+          - "kibana"
+volumes:
+  chai-elastic:    
+networks:
+  back-tier:

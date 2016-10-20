@@ -1,7 +1,4 @@
-FROM pblittle/docker-logstash
+FROM logstash:2.4.0
 
-COPY default.json /opt/logstash/vendor/kibana/app/dashboards/default.json
-
-EXPOSE 12201/UDP
-EXPOSE 9200
-EXPOSE 9292
+COPY logstash.conf /etc/logstash/conf.d/logstash.conf
+COPY chai_template.json "/etc/logstash/template/chai_template.json"

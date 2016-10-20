@@ -11,30 +11,18 @@ services:
       back-tier:
         aliases:
           - "backend"
-
   pg:
     image: postgres:9.5.1
     environment:
-      POSTGRES_PASSWORD: ThisIsChai1
+      POSTGRES_PASSWORD: ${PG_PASS}
       POSTGRES_USER: chai
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - chai-postgres:/var/lib/postgresql/data
     networks:
       back-tier:
         aliases:
           - "pg"
-
-  logstash:
-    build: ./logstash
-    ports:
-      - "9292:9292"
-      - "9200:9200"
-    volumes:
-      - ./logstash/conf.d:/opt/logstash/conf.d/
-      - ./logstash-data:/opt/logstash/data
-    networks:
-      back-tier:
-        aliases:
-          - "logstash"
 networks:
   back-tier:
+volumes:
+  chai-postgres:    

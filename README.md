@@ -2,43 +2,44 @@
 
 This project has 3 docker compose files:
 
-* backend.yml   - backend only (e.g. for dev on front end)
-* complete.yml  - for everything (includes printing and front end)
-* pims.yml      - everything plus pims
+* backend.yml   - backend components
+* dev.yml       - exposes 8080 for local development
+* frontend.yml  - for everything (includes printing and front end)
 
-## backend.yml
+## Usage
 
-Create a folder called data, and copy in the following:
+For development
 
-* chai-1.0-SNAPSHOT.jar (Can get from latest jenkins build - https://www.elidirhealth.co.uk/jenkins/view/dev/job/dev-backend-jar/ws/chai/target/chai-1.0-SNAPSHOT.jar)
-* config.yml (As above: https://www.elidirhealth.co.uk/jenkins/view/dev/job/dev-backend-jar/ws/chai/target/classes/config.yml)
-* all cards - copy from cards git repo into a single directory called cards.
+        export PG_PASS=ThisIsChai1
+        docker-compose -f backend.yml -f dev.yml -f elk.yml up --build
 
-To run (and rebuild all images):
+For full stack
 
-    `export PGPASS=[chai-password]`
-    `docker-compose -f backend.yml up --build`
+        export PGPASS=ThisIsChai1
+        docker-compose -f backend.yml -f frontend.yml -f elk.yml up --build
 
-You should end up with the backend available at:
+## Container Details
 
-    http://localhost:8080
+**backend**
+Extends Java image. Requires jar, config and card files in /data
 
-And logstash available at:
+**postgres**
+official postgres image, with named volume for data
 
-    http://localhost:9292
+**elasticsearch**
+Uses official elasticsearch image with named volume for data. No custom config. (Kibana image posts index configuration?)
 
-## complete.yml
+**logstash**
+Uses official logstash image with mapped conf.d directory
 
-build.sh expects to find projects in ~/git/$project
-all projects must be built before running build.sh
-you will need to edit the confic.json for the client
+**kibana**
+Uses official kibana image with mapped config directory
 
-## To run the project
+**web**
+Extends ngnix image. Copies in config and static site.
 
-    `docker-compose -f backend.yml up`
-
-
-
+**printing**
+TODO
 
 
 

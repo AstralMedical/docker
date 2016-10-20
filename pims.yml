@@ -1,6 +1,0 @@
-pims:
-  extends:
-    file: backend.yml
-    service: backend
-    build:
-      
