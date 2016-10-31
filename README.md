@@ -11,6 +11,7 @@ This project has 3 docker compose files:
 For development
 
         export PG_PASS=ThisIsChai1
+        export DW_PORT=8081
         docker-compose -f backend.yml -f dev.yml -f elk.yml up --build
 
 For full stack
