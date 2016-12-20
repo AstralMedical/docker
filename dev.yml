@@ -1,5 +1,0 @@
-version: "2"
-services:
-  backend:
-    ports:
-      - "${DW_PORT}:8080"

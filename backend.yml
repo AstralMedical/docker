@@ -1,16 +1,14 @@
 version: "2"
 services:
   backend:
-    build: ./backend    
+    image: elidirhealth/chai-rest:64ca75be4d777512de82b5db70e09c43eb1da2f2   
     volumes:
-      - ./data:/data
+      - ./cards:/cards
     depends_on:
       - logstash
       - pg
     networks:
-      back-tier:
-        aliases:
-          - "backend"
+      back-tier:        
   pg:
     image: postgres:9.5.1
     environment:
@@ -19,10 +17,31 @@ services:
     volumes:
       - chai-postgres:/var/lib/postgresql/data
     networks:
-      back-tier:
-        aliases:
-          - "pg"
+      back-tier:        
+  elasticsearch:
+    image: elasticsearch:2.4  
+    command: elasticsearch -Des.network.host=0.0.0.0
+    volumes:
+      - chai-elastic:/usr/share/elasticsearch/data
+    networks:
+      back-tier:        
+  logstash:
+    image:  elidirhealth/chai-logstash:bb4af5e615f7cc6d2e105750d124605c6570ce33    
+    depends_on:
+      - elasticsearch  
+    networks:
+      back-tier:        
+  kibana:
+    image: elidirhealth/chai-kibana:e5df62529240a8072c3bb2b181432976a0ea30f0    
+    depends_on:
+      - elasticsearch 
+    ports:
+      - "9292:9292"
+    networks:
+      back-tier:        
 networks:
   back-tier:
 volumes:
-  chai-postgres:    
+  chai-postgres: 
+  chai-elastic:     
+  
