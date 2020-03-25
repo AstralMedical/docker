@@ -1,11 +1,6 @@
-scm-api:0.2
-git:3.0.1
-git-client:2.2.0
-github:1.11.3
-github-api:1.82
-github-oauth:0.24
-nodejs:0.2.2
-slack:2.1
-jira:1.39
-shiningpanda:0.23
-gradle:1.25
+scm-api
+git
+git-client
+github
+github-api
+github-oauth
