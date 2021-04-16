@@ -28,3 +28,4 @@ USER jenkins
  # drop back to the regular jenkins user - good practice
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 #COPY config.xml
+ENV JENKINS_OPTS --prefix=/jenkins
