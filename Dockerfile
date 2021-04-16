@@ -16,6 +16,7 @@ RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
 RUN npm install -g bower
 RUN pip install virtualenv
+RUN gem install rake
 RUN gem install scss-lint -v 0.38.0
 
 
@@ -27,4 +28,3 @@ USER jenkins
  # drop back to the regular jenkins user - good practice
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 #COPY config.xml
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
