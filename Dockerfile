@@ -12,7 +12,7 @@ RUN apt-get update &&  apt-get install -y 					  socat \
                       ruby \
                       lib32z1
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
-RUN apt-get update && apt install nodejs
+RUN apt-get update && apt install -y nodejs
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
 RUN npm install -g bower
