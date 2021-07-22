@@ -9,7 +9,7 @@ RUN apt-get update &&  apt-get install -y 					  socat \
 					  python-pip \
 					  libncurses5-dev \
                       lame \
-                      ruby2.3 \
+                      ruby \
                       lib32z1
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
 RUN apt-get update && apt install nodejs
@@ -19,7 +19,7 @@ RUN npm install -g bower
 RUN npm install -g cordova
 RUN pip install virtualenv
 run gem install rake
-RUN gem install scss-lint -v 0.38.0
+RUN gem instajenlins list ll scss-lint -v 0.38.0
 RUN echo "Europe/London" > /etc/timezone
 
 # download and extract gradle
