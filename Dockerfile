@@ -11,7 +11,7 @@ RUN apt-get update &&  apt-get install -y 					  socat \
                       lame \
                       ruby \
                       lib32z1
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash
 RUN apt-get update && apt install -y nodejs
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
@@ -19,7 +19,7 @@ RUN npm install -g bower
 RUN npm install -g cordova
 RUN pip install virtualenv
 run gem install rake
-RUN gem instajenlins list ll scss-lint -v 0.38.0
+RUN gem install scss-lint -v 0.38.0
 RUN echo "Europe/London" > /etc/timezone
 
 # download and extract gradle
