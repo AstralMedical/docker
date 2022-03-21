@@ -6,7 +6,7 @@ RUN apt-get update &&  apt-get install -y 					  socat \
 					  ruby-sass \
 					  maven \
 					  python-dev \
-					  python-pip \
+					  python3-pip \
 					  libncurses5-dev \
                       lame \
                       ruby \
