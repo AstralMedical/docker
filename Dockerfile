@@ -16,7 +16,6 @@ RUN apt-get update && apt install -y nodejs
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
 RUN npm install -g bower
-RUN npm install -g cordova
 RUN pip install virtualenv
 run gem install rake
 RUN gem install scss-lint -v 0.38.0
