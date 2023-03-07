@@ -1,5 +1,5 @@
-# docker
-docker images  
+# Jenkins
+This repository contains the docker image definition for our internal jenkins server
 
 ## commands
 * `docker build -t ad-jenkins .`
