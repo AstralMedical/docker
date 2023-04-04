@@ -75,7 +75,6 @@ maven-plugin
 popper2-api
 git-server
 popper-api
-openJDK-native-plugin
 plain-credentials
 pipeline-stage-tags-metadata
 jira
