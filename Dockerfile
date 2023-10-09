@@ -5,8 +5,6 @@ USER root
 RUN apt-get update &&  apt-get install -y 					  socat \
 					  ruby-sass \
 					  maven \
-					  python-dev \
-					  python3-pip \
 					  libncurses5-dev \
                       lame \
                       ruby \
@@ -16,8 +14,7 @@ RUN apt-get update && apt install -y nodejs
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
 RUN npm install -g bower
-RUN pip install virtualenv
-run gem install rake
+RUN gem install rake
 RUN gem install scss-lint -v 0.38.0
 RUN echo "Europe/London" > /etc/timezone
 
