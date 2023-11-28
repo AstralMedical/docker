@@ -11,7 +11,8 @@ RUN apt-get update &&  apt-get install -y npm \
     python-pip \
     libncurses5-dev \
     lib32stdc++6 \
-    lib32z1
+    lib32z1 \
+    awscli
 RUN npm install -g grunt-cli
 RUN npm install -g karma-cli
 RUN npm install -g bower
