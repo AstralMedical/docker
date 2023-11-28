@@ -8,7 +8,8 @@ RUN apt-get update &&  apt-get install -y 					  socat \
 					  libncurses5-dev \
                       lame \
                       ruby \
-		      wget
+		              wget \
+                      awscli
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash
 RUN apt-get update && apt install -y nodejs
 RUN npm install -g grunt-cli
